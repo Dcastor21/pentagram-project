@@ -40,10 +40,10 @@ class Model:
             variant="fp16")
 
         self.pipe.to("cuda")
-        self.API_KEY = os.environ["API_KEY"]
+        self.API_KEY = os.environ.get("API_KEY")
 
     @modal.web_endpoint()
-    def generate_image(self, request: requests.Request, prompt: str = Query(..., description="The prompt to generate an image for")):
+    def generate_image(self, request: Request, prompt: str = Query(..., description="The prompt to generate an image for")):
 
         api_key = request.headers.get("X-API-KEY")
         if api_key != self.API_KEY:
