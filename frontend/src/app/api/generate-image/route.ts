@@ -11,15 +11,14 @@ export async function POST(request: Request) {
     // For now, we'll just echo back the text
 
     const url = new URL(
-      process.env.API_URL ||
-        "https://dcastor21--text2image-app-model-generate-image.modal.run"
+      "https://dcastor21--text2image-app-model-generate-image.modal.run"
     );
     url.searchParams.set("text", text);
 
     const response = await fetch(url.toString(), {
       method: "GET",
       headers: {
-        "X-API-KEY": process.env.API_KEY || "",
+        "X-API-KEY": `${process.env.API_KEY}`,
         Accept: "image/jpeg",
       },
     });
